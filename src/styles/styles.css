@@ -8,10 +8,12 @@
 
 }
 
+
 .icons{
     color: black;
-    width: 500px;
-    height: 500px;
+    width: 2px;
+    height: 2px;
+    padding-right: 100px;
 }
 
 body{
