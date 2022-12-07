@@ -12,9 +12,6 @@
     padding: 8px;
     margin-top: 12px;
     display: flex;
-/*     
-    p-2 mt-3 flex items-center rounded-md px-4 duration-300
-                cursor-pointer text-white textStyle options-hovered */
 }
 
 
@@ -23,8 +20,6 @@
     width: 2px;
     height: 2px;
     padding-right: 100px;
-    /* TAKAS REI DELAS */
-    /*TESTE DO PUSH*/
 }
 
 body{
