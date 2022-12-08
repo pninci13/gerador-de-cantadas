@@ -2,6 +2,7 @@
     max-height: 100%;
     height: 100vh;
     background-color: #FFC3AC !important;
+    position: fixed;
 }
 
 .li-spacing{
@@ -134,4 +135,135 @@ body{
     border-radius: 0px 0px 8px 8px;
     background-color: #FC8C77;
     transition: 0.3s;
+}
+
+/*-------------------------------------------------*/
+
+.feedback-icon{
+    color: black;
+    font-size: 18px;
+}
+
+.content{
+    margin-left: 280px;
+    width: 100vw - 200px;
+    height: 100vh;
+    background-color: #FAF9F6;
+}
+
+.saved-title{
+    padding-top: 15vh;
+    padding-left: 6vw;
+    padding-bottom: 3vh;
+    font-size: 30px;
+}
+
+.saved-table{
+    padding-left: 6vw;
+    padding-right: 6vw;
+
+}
+
+.bdr {
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+#id-column{
+    width: 120px;
+}
+
+#name-column, #phone-number-column{
+    width: 400px;
+}
+
+#remove-btn{
+    width: 100%;
+}
+
+.rm-btn{
+    height: 32px;
+    width: 75px;
+    color: #BB2D3B;
+    border: solid 1px #BB2D3B;
+    border-radius: 8px;
+    background-color:#FAF9F6;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.rm-btn:hover{
+    background-color: #BB2D3B;
+    color:rgb(255, 255, 255);
+    transition: 0.3s;
+}
+
+.saved-pickup{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 65vw;
+}
+
+.saved-pickup:hover{
+    background-color: #e3e3e3;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.icon-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid {
+	display: grid;
+    grid-template-columns: repeat(2, minmax(auto, auto));
+    border: 2px #3b140d solid;
+    max-width: 70vw;
+	margin: 0 auto;
+	border: none;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.grid > div{
+    border-bottom: 1px gray solid;
+}
+
+.grid > .feedback-btn{
+    border-bottom: 1px gray solid;
+}
+
+.grid-template-columns-3 {
+	grid-template-columns: 20fr 1fr;
+}
+
+/* Estilos Gerais */
+.item {
+	margin: 5px;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.feedback-btn{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    margin-bottom: 5px;
+}
+
+.thumbs-up{
+    color: green;
+}
+
+.thumbs-down{
+    color: gray;
 }

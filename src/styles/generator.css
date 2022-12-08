@@ -135,3 +135,10 @@ body{
     background-color: #FC8C77;
     transition: 0.3s;
 }
+
+.content{
+    margin-left: 280px;
+    width: 100vw - 200px;
+    height: 100vh;
+    background-color: #FAF9F6;
+}
