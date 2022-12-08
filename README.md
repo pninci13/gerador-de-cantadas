@@ -10,9 +10,9 @@
 <h4 align="center">A web application to generate pickup lines<a href="http://electron.atom.io" target="_blank"></a></h4>
 
 <p align="center">
-  <a href="#key-features">App Features</a> •
+  <a href="#app-features">App Features</a> •
   <a href="#how-to-use">How To Use</a> •
-  <a href="#credits">Developers</a> •
+  <a href="#developers">Developers</a> •
 </p>
 
 ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
