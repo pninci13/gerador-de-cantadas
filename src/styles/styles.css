@@ -2,6 +2,7 @@
     max-height: 100%;
     height: 100vh;
     background-color: #FFC3AC !important;
+    position: fixed;
 }
 
 .li-spacing{
@@ -135,3 +136,12 @@ body{
     background-color: #FC8C77;
     transition: 0.3s;
 }
+
+h1{
+    padding-top: 7vh;
+    padding-left: 6vw;
+    padding-bottom: 3vh;
+    font-size: 30px;
+    text-align: center;
+}
+
