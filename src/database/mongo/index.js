@@ -24,39 +24,38 @@ const dbController = require(__dirname + "/db/dbController.js");
 app.get('/', function (req, res) { });
 
 app.listen(porta, function () {
-    dbController.connectDB();
 
-    console.log(`Servidor rodando em: http://${host}:${porta}`);
+  dbController.connectDB();
+
+  console.log(`Servidor rodando em: http://${host}:${porta}`);
+});
+
+// app.post("/cadastro", function (req, res) {
+
+//   MongoClient.connect(url, function (err, db) {
+//     if (err) throw err;
+//     var dbo = db.db("mydb");
+//     var myobj = new User(req.body.loginInput, req.body.senhaInput);
+//     dbo.collection("customers").insertOne(myobj, function (err, res) {
+//       if (err) throw err;
+//       console.log("Um usuario foi cadastrado");
+//       db.close();
+//     });
+//   });
+//   res.sendFile(__dirname + "/public/index.html");
+// });
+
+app.post("/cadastro", function (req, res) {
+  dbController.addUser(req);
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 
-app.post("/cadastroUsuario", function (req, res) {
-    dbController.addUser(req);
-    res.sendFile(__dirname + "/public/index.html");
-});
+app.get("/listar", function (req, res) {
+  console.log("Listando usuarios: ");
+  var query = {};
+  dbController.find(query);
 
-
-app.get("/listarUsuarios", function (req, res) {
-    console.log("Listando usuarios: ");
-    var query = {};
-    dbController.findUser(query);
-
-    res.sendFile(__dirname + "/public/index.html");
-
-});
-
-//========================================================
-app.post("/cadastroCantada", function (req, res) {
-    dbController.addCantada(req);
-    res.sendFile(__dirname + "/public/index.html");
-});
-
-
-app.get("/listarCantadas", function (req, res) {
-    console.log("Listando cantadas: ");
-    var query = {};
-    dbController.findCantada(query);
-
-    res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/public/index.html");
 
 });
