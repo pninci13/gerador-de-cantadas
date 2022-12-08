@@ -1,0 +1,11 @@
+passos:
+    1- Instalar MongoDB no site: https://www.mongodb.com/try/download/community
+    2- Baixar robo 3t em: https://studio3t.com/
+    3- Apos baixar o MongoDB, setar nas variaveis de ambiente:
+        *Abrir variaveis de ambiente no computador.
+        *Clicar em "Variaveis de Ambiente.."
+        *Em "Variaveis do sistema", procurar a variavel Path e adicionar o diretorio "C:\Program Files\MongoDB\Server\6.0\bin"
+    4- Depois, abrir um PowerShell e executar o comando "md C:\MongoDB\data\db"
+    5- Após isso, executar o comando "mongod --port 27017 --dbpath C:\MongoDB\data\db", isso ira rodar o banco de dados.
+    6- Abrir outro PowerShell, ir no diretorio do projeto e executar os comandos:"npm install express --save; npm install body-parser --save, npm install mongodb --save"
+    7- E pronto, rode o "npm start" e entre no link "http://localhost:3000"
