@@ -17,7 +17,7 @@
 
 ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
 
-## Key Features
+## App Features
 
 * LivePreview - Make changes, See changes
   - Instantly see what your Markdown documents look like in HTML as you create them.
@@ -58,16 +58,7 @@ $ npm start
 > **Note**
 > If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
-
-## Download
-
-You can [download](https://github.com/amitmerchant1990/electron-markdownify/releases/tag/v1.2.0) the latest installable version of Markdownify for Windows, macOS and Linux.
-
-## Emailware
-
-Markdownify is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <bullredeyes@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
-
-## Credits
+## Developers
 
 This software uses the following open source packages:
 
@@ -78,10 +69,6 @@ This software uses the following open source packages:
 - [CodeMirror](http://codemirror.net/)
 - Emojis are taken from [here](https://github.com/arvida/emoji-cheat-sheet.com)
 - [highlight.js](https://highlightjs.org/)
-
-## Related
-
-[markdownify-web](https://github.com/amitmerchant1990/markdownify-web) - Web version of Markdownify
 
 ## Support
 
@@ -101,7 +88,6 @@ This software uses the following open source packages:
 ## License
 
 MIT
-
 ---
 
 > [amitmerchant.com](https://www.amitmerchant.com) &nbsp;&middot;&nbsp;
