@@ -155,8 +155,13 @@ body{
 .generated-btn{
     margin-left: 6vw;
     margin-right: 35vw;
-    background-color: #FC8C77;
+    background-color: #FFC3AC;
     margin-bottom: 75px;
+    width: 190px;
+}
+
+.generated-btn:hover{
+    background-color: #FC8C77;
 }
 
 
