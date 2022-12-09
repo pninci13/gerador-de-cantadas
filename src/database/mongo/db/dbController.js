@@ -79,10 +79,10 @@ function addCantada(req) {
       db.close();
     });
   });
-
 }
 
 function findCantada(query) {
+
   MongoClient.connect(url, function (err, client) {
 
     var db = client.db("mydb");
@@ -98,6 +98,39 @@ function findCantada(query) {
         client.close();
       }
     );
+    
+  });
+
+  // findRandomCantada();
+   
+}
+
+function findRandomCantada() {
+  MongoClient.connect(url, async function (err, client) {
+
+    var db = client.db("mydb");
+    var collection = db.collection("cantadas");
+    
+    let d = new Date();
+    let time = d.getMilliseconds();
+    let count = await collection.countDocuments().then();
+    let index = Math.floor(Math.random() * time) % count;
+    console.log("COLL COUNT: " + count);
+    console.log("INDEX: " + index);
+    var query = { num: index};
+
+    var cursor = await collection.find(query);
+    console.log("CURSOR: " + cursor);
+
+    cursor.forEach(
+      function (doc) {
+        console.log(doc);
+      },
+      function (err) {
+        client.close();
+      }
+    );
+
   });
 }
 
