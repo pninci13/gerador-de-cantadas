@@ -1,0 +1,91 @@
+body{
+    background-color: #FFC3AC;
+}
+
+.title-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5vh;
+}
+
+
+h1{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 70px;
+    color: #932442;
+}   
+
+.heart{
+    height: 60px;
+    width: 60px;
+    padding-right: 1vw;
+}
+
+.blob-one{
+    position: absolute;
+    margin-bottom: -4px;
+    margin-left: -40px;
+    bottom: 0;
+    left: 0;
+}
+
+.blob-two{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+.user-field{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14vh;
+}
+
+.user-input, .password-input{
+    background-color: #FFC3AC;
+    border: 2px solid #932442;
+    border-radius: 8px;
+    width: 293px;
+    height: 45px;
+}
+
+.user-input:focus, .password-input:focus{
+    outline: #932442;
+}
+
+.password-field{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vh;
+}
+
+.btn-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    margin-top: 3vh;
+}
+
+.login-btn{
+    background-color: #932442;
+    border: 2px solid #932442;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    width: 300px;
+    height: 45px;
+    border-radius: 8px;
+}
+
+.login-btn:hover{
+    background-color: #ad3656;
+    border: 2px solid #b9385b;
+    transition: 0.5s;
+    cursor: pointer;
+}
