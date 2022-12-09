@@ -2,6 +2,7 @@
     max-height: 100%;
     height: 100vh;
     background-color: #FFC3AC !important;
+    position: fixed;
 }
 
 .li-spacing{
@@ -133,5 +134,89 @@ body{
 .user:hover {
     border-radius: 0px 0px 8px 8px;
     background-color: #FC8C77;
+    transition: 0.3s;
+}
+
+.content{
+    margin-left: 280px;
+    width: 100vw - 200px;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: #FAF9F6;
+}
+
+.home-title{
+    padding-top: 15vh;
+    margin-left: 6vw;
+    padding-bottom: 3vh;
+    font-size: 30px;
+}
+
+.generated-btn{
+    margin-left: 6vw;
+    margin-right: 35vw;
+    background-color: #FC8C77;
+    margin-bottom: 75px;
+}
+
+
+.grid {
+	display: grid;
+    grid-template-columns: repeat(2, minmax(auto, auto));
+    border: 2px #3b140d solid;
+    max-width: 70vw;
+	margin: 0 auto;
+	border: none;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.grid > div{
+    border-bottom: 1px gray solid;
+}
+
+.grid > .feedback-btn{
+    border-bottom: 1px gray solid;
+}
+
+.grid-template-columns-3 {
+	grid-template-columns: 20fr 1fr;
+}
+
+/* Estilos Gerais */
+.item {
+	margin: 5px;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.icons{
+    color: black;
+    font-size: 19px;
+    padding-right: 6px;
+    padding-left: 6px; 
+}
+
+.icon-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn{
+    all: unset;
+    cursor: pointer;  
+}
+
+.generated-pickup{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 65vw;
+}
+.generated-pickup:hover{
+    background-color: #e3e3e3;
+    cursor: pointer;
     transition: 0.3s;
 }

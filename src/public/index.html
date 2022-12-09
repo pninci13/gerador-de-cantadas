@@ -42,6 +42,24 @@
             </div>
         </div> 
 
+        <div id="pickup-modal" class="modal fade" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modal-title">Suas Notificações</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success">Save changes</button>
+                </div>
+              </div>
+            </div>
+        </div> 
+
         <div class="sidebar d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
             <a href="/src/public/index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                 <img src="/src/images/heart-icon.png" alt="">
@@ -101,7 +119,30 @@
         </div>
 
         <div class="content">
-            <h1>Bem-vindo Takas</h1>
+            <div class="home-title">
+                <b>Gerador</b>
+            </div>
+
+            <div class="sidebar-button generated-btn">
+                <a href="index.html" class="btn-text" >
+                    <i class="icons bi-house"></i>
+                    Gerar Cantada +
+                </a>
+            </div>
+
+            <div>
+                <div class="container grid grid-template-columns-3">
+                    <div class="item generated-pickup" data-bs-toggle="modal" data-bs-target="#pickup-modal">CANTADA1</div>
+                    <button class="icon-btn"><i class="icons bi-bookmark"></i></button>
+    
+                    <div class="item generated-pickup" data-bs-toggle="modal" data-bs-target="#pickup-modal">CANTADA2</div>
+                    <button class="icon-btn"><i class="icons bi-bookmark"></i></button>
+
+                    <div class="item generated-pickup" data-bs-toggle="modal" data-bs-target="#pickup-modal">CANTADA3</div>
+                    <button class="icon-btn"><i class="icons bi-bookmark"></i></button>
+                </div>
+            </div>
+
         </div>
         
         <script src="/src/scripts/modals.js" defer></script>
