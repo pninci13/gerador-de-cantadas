@@ -1,5 +1,5 @@
-const User = require("../public/User");
-const Cantada = require("../public/Cantada");
+const User = require("../../../scripts/User");
+const Cantada = require("../../../scripts/Cantada");
 let MongoClient = require('mongodb').MongoClient;
 let url = "mongodb://0.0.0.0:27017/";
 let MONGO_CONFIG = {
@@ -27,13 +27,17 @@ function addUser(req) {
       throw err;
 
     var dbo = db.db("mydb");
-    var myobj = new User(req.body.loginInput, req.body.senhaInput);
-
-    dbo.collection("customers").insertOne(myobj, function (err, res) {
-      if (err) throw err;
-      console.log(myobj._usuario + " foi cadastrado");
+    if (req.body.password == req.body.confirmPassword) {
+      var myobj = new User(req.body.user, req.body.password);
+      dbo.collection("customers").insertOne(myobj, function (err, res) {
+        if (err) throw err;
+        console.log(myobj._usuario + " foi cadastrado");
+        db.close();
+      });
+    } else {
+      alert("Senhas diferentes!");
       db.close();
-    });
+    }
   });
 }
 
