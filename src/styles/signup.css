@@ -24,18 +24,18 @@ h1{
     padding-right: 1vw;
 }
 
-.blob-one{
+.blob-four{
     position: absolute;
-    margin-bottom: -4px;
-    margin-left: -40px;
-    bottom: 0;
+    top: 0;
     left: 0;
 }
 
-.blob-two{
+.blob-five{
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
+    margin-bottom: -4px;
+    margin-left: -40px;
 }
 
 
