@@ -101,7 +101,7 @@ function findCantada(query) {
     
   });
 
-  // findRandomCantada();
+  findRandomCantada();
    
 }
 
