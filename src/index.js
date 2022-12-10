@@ -13,6 +13,7 @@ app.use("/", express.static(__dirname + "/public"));
 //Configurando body-parser
 const bodyParser = require("body-parser");
 const { json } = require('body-parser');
+const User = require('./public/scripts/User');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -35,8 +36,8 @@ app.listen(porta, function () {
 
 
 //========================================================
-app.post("/cadastroCantada", function (req, res) {
-    dbController.addCantada(req);
+app.get("/cadastroCantada", async function (req, res) {
+    await dbController.addCantada(req);
     res.sendFile(__dirname + "/public/index.html");
 });
 
@@ -93,6 +94,18 @@ app.post('/login', async (req,res) => {
 });
 
 app.post("/cadastroUsuario", async (req, res) => {
-    dbController.addUser(req);
-    res.sendFile(__dirname + "/public/index.html");
+
+    _usuario = req.body.usuario;
+    _senha = req.body.senha;
+
+    await dbController.addUser(_usuario,_senha);
+    res.status(201);
+    res.send();
+    res.end();
+});
+
+app.get("/attCantada",async(req,res)=>{
+    var cantada = "Quando abre vaga para eu me candidatar a ser o grande amor da sua vida?";
+
+    User.adicionarFavoritadas(cantada);
 });

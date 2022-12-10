@@ -21,25 +21,7 @@ function connectDB() {
 
 //======================================================== 
 //Controla usuarios
-function addUser(req) {
-  MongoClient.connect(url, function (err, db) {
-    if (err)
-      throw err;
 
-    var dbo = db.db("mydb");
-    if (req.body.password == req.body.confirmPassword) {
-      var myobj = new User(req.body.user, req.body.password);
-      dbo.collection("customers").insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        console.log(myobj._usuario + " foi cadastrado");
-        db.close();
-      });
-    } else {
-      alert("Senhas diferentes!");
-      db.close();
-    }
-  });
-}
 
 
 let db;
@@ -84,28 +66,34 @@ function addCantada(req) {
   });
 }
 
-function findCantada(query) {
+async function findCantada(cantada) {
 
-  MongoClient.connect(url, function (err, client) {
+  
 
-    var db = client.db("mydb");
+    const db = await loadDB();
+
     var collection = db.collection("cantadas");
 
-    var cursor = collection.find(query).sort({ favoritados: 1 });
+    console.log("chegou aqui 1");
 
-    cursor.forEach(
-      function (doc) {
-        console.log(doc);
-      },
-      function (err) {
-        client.close();
-      }
-    );
+    var cursor = collection.updateOne({cantada},{$inc:{favoritados: 1}});
+    console.log("chegou aqui 2");
 
+
+    
+
+}
+
+async function addUser(user,passwd) {
+
+
+  const db = await loadDB();
+
+  var myobj = new User(user, passwd);
+  db.collection("customers").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    console.log(myobj._usuario + " foi cadastrado");
   });
-
-  //findRandomCantada();
-
 }
 
 async function findUser(user, passwd) {

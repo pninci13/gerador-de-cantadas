@@ -1,3 +1,5 @@
+const dbController = require("../../db/dbController");
+
 class Cantada{
     _num
     _cantada
@@ -189,8 +191,18 @@ class Cantada{
     constructor(num, cantada){//cadastrar uma cantada nova
         this.num = num;
         this._cantada=cantada;
-        this._numFavoritados=0;
+        this._numFavoritados=parseInt(0);
         Cantada._listaCantadas.push(this);
+    }
+
+    static async incrementarFavoritados(cantada){
+        console.log("tentei");
+        for(var i = 0;i<Cantada._listaCantadas.length;i++){
+            if(cantada==Cantada._listaCantadas.cantada){
+                console.log("deu bom");
+            }
+        }
+        await dbController.findCantada(cantada);
     }
 }
 
