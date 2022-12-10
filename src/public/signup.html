@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>The Flirt</title>
-    <link rel="icon" href="/src/images/heart-icon.png">
-    <link rel="stylesheet" href="/src/styles/signup.css">
+    <link rel="icon" href="/images/heart-icon.png">
+    <link rel="stylesheet" href="/styles/signup.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800&display=swap" rel="stylesheet">
@@ -15,42 +15,42 @@
     <body>
 
         <div class="title-div">
-            <img src="/src/images/heart-logo-icon.svg" alt="" class="heart">
+            <img src="/images/heart-logo-icon.svg" alt="" class="heart">
             <h1> The Flirt </h1>
         </div> 
         
 
-        <form action="http://127.0.0.1:3000/cadastroUsuario" method="post"></form>
+        <form action="http://127.0.0.1:3000/cadastroUsuario" method="post">
             <div class="login-content">
                 <div class="user-field">
-                    <input type="email" class="user-input" placeholder="Username" id="user">
+                    <input type="email" class="user-input" placeholder="Username" id="user" name="user" required>
             </div>
 
             <div class="password-field">
-                    <input type="password" class="password-input" placeholder="Password" id="password">
+                    <input type="password" class="password-input" placeholder="Password" id="password" name="password" required>
                 </div>
             </div>
 
             <div class="password-field">
-                <input type="password" class="password-input" placeholder="Confirm password" id="confirmPassword">
+                <input type="password" class="password-input" placeholder="Confirm password" id="confirmPassword" name="confirmPassword" required>
             </div>
             </div>
 
             <div class="btn-div">
-                <button class="login-btn">Cadastrar</button>
+                <button class="login-btn" type="submit">Cadastrar</button>
             </div>
         </form>
 
         <div class="btn-div">
-            <label for="" class="signup">Já possui conta?</label><a href="/src/public/login.html" class="signup-label">Entrar</a>
+            <label for="" class="signup">Já possui conta?</label><a href="login.html" class="signup-label">Entrar</a>
         </div>
         
         <div class="blob-four">
-            <img src="/src/images/blob4.png" alt="">
+            <img src="/images/blob4.png" alt="">
         </div>
 
         <div class="blob-five">
-            <img src="/src/images/blob5.png" alt="">
+            <img src="/images/blob5.png" alt="">
         </div>
     </body>
 </html>

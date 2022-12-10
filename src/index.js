@@ -7,7 +7,7 @@ const porta = "3000";
 //Configurando pagina com express
 const express = require('express');
 const app = express();
-app.use(express.static('public'));
+app.use("/", express.static(__dirname + "/public"));
 
 //========================================================
 //Configurando body-parser
@@ -35,16 +35,6 @@ app.post("/cadastroUsuario", function (req, res) {
     res.sendFile(__dirname + "/public/index.html");
 });
 
-
-app.get("/listarUsuarios", function (req, res) {
-    console.log("Listando usuarios: ");
-    var query = {};
-    dbController.findUser(query);
-
-    res.sendFile(__dirname + "/public/index.html");
-
-});
-
 //========================================================
 app.post("/cadastroCantada", function (req, res) {
     dbController.addCantada(req);
@@ -56,6 +46,30 @@ app.get("/listarCantadas", function (req, res) {
     console.log("Listando cantadas: ");
     var query = {};
     dbController.findCantada(query);
+
+    res.sendFile(__dirname + "/public/index.html");
+
+});
+
+app.post('/login', (req,res) => {
+    var query = {_usuario: req.body.user, _senha: req.body.password};
+
+    if(dbController.findUser(query) != -1){
+        res.sendFile(__dirname + "/public/index.html");
+    } else{
+        res.sendFile(__dirname + "/public/login.html");
+        window.alert("Credenciais Inválidas");
+    }
+
+   
+    // res.end();
+})
+
+
+app.get("/listarUsuarios", function (req, res) {
+    console.log("Listando usuarios: ");
+    var query = {};
+    dbController.findUser(query);
 
     res.sendFile(__dirname + "/public/index.html");
 
