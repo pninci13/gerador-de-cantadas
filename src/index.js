@@ -12,7 +12,9 @@ app.use("/", express.static(__dirname + "/public"));
 //========================================================
 //Configurando body-parser
 const bodyParser = require("body-parser");
+const { json } = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //========================================================
 //Importando modulos e criando banco de dados
@@ -52,20 +54,19 @@ app.get("/listarCantadas", function (req, res) {
 });
 
 app.post('/login', async (req,res) => {
+    
+    _usuario = req.body.usuario;
+    _senha = req.body.senha;
 
-    let user = await dbController.findUser(req.body.user, req.body.password);
-    console.log("User: " + user);
-    if(user != undefined){
-        console.log("VAI PRO INDEX");
-        res.sendFile(__dirname + "/public/index.html");
+    let user = await dbController.findUser(_usuario, _senha);
+
+    if(user != -1){
+        res.send({username: user._usuario});
     } else{
-        console.log("VAI PRO LOGIN");
-        res.sendFile(__dirname + "/public/login.html");
-        // window.alert("Credenciais Inválidas");
+        res.send({username: -1});
     }
 
-   
-    // res.end();
+    res.end();
 })
 
 

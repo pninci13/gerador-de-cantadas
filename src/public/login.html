@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>The Flirt</title>
-    <link rel="icon" href="../public/images/heart-icon.png">
-    <link rel="stylesheet" href="../public/styles/login.css">
+    <link rel="icon" href="./images/heart-icon.png">
+    <link rel="stylesheet" href="./styles/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800&display=swap" rel="stylesheet">
@@ -15,37 +15,40 @@
     <body>
 
         <div class="title-div">
-            <img src="../public/images/heart-logo-icon.svg" alt="" class="heart">
+            <img src="./images/heart-logo-icon.svg" alt="" class="heart">
             <h1> The Flirt </h1>
         </div> 
         
-        <form action="http://127.0.0.1:3000/login" method="post">
+        <!-- <form action="http://127.0.0.1:3000/login" method="post"> -->
             <div class="login-content">
                 <div class="user-field">
-                    <input type="email" class="user-input" placeholder="Username" name="user" required>
+                    <input type="email" class="user-input" placeholder="Username" id="user" required>
                 </div>
             </div>
 
                 <div class="password-field">
-                    <input type="password" class="password-input" placeholder="Password" name="password" required>
+                    <input type="password" class="password-input" placeholder="Password" id="password" required>
                 </div>
             </div>
 
             <div class="btn-div">
-                <button class="login-btn" type="submit">Login</button>
+                <button class="login-btn" onclick="validLogin()" type="submit">Login</button>
             </div>
-        </form>
+        <!-- </form> -->
 
         <div class="btn-div">
             <label for="" class="signup">Ainda não possui conta?</label><a href="signup.html" class="signup-label">Cadastre aqui</a>
         </div>
         
         <div class="blob-one">
-            <img src="../public/images/blob.png" alt="">
+            <img src="./images/blob.png" alt="">
         </div>
 
         <div class="blob-two">
-            <img src="../public/images/blob2.png" alt="">
+            <img src="./images/blob2.png" alt="">
         </div>
+
+        <script src="./login.js"></script>
+        
     </body>
 </html>

@@ -42,27 +42,37 @@ function addUser(req) {
 }
 
 
+let db;
+const loadDB = async () => {
+    if (db) {
+        return db;
+    }
+    try {
+        const client = await MongoClient.connect(url);
+        db = client.db('mydb');
+    } catch (err) {
+        Raven.captureException(err);
+    }
+    return db;
+};
+
+
+
 async function findUser(user, passwd) {
   let customer;
 
-  MongoClient.connect(url, async function (err, client) {
+  const db = await loadDB();
+  var collection = db.collection("customers");
 
-      var db = client.db("mydb");
-      var collection = db.collection("customers");
+  customer = await collection.findOne({ _usuario: user });
 
-      customer = await collection.findOne({ _usuario: user });
+  if(!(String(customer._senha) === String(passwd))) {
+    customer = -1;
+  }   
 
-      if (String(customer._senha) === String(passwd)) {
-        console.log(customer._usuario + " LOGADO");
-      } else {
-        console.log("NAO LOGADO");
-        customer = -1;
-      }
-      return customer;
-    });
+  return customer;
 }
 
-//======================================================== 
 //Controla cantadas
 function addCantada(req) {
   MongoClient.connect(url, function (err, db) {
