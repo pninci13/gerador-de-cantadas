@@ -20,24 +20,26 @@
         </div> 
         
 
-        <div class="login-content">
-            <div class="user-field">
-                <input type="email" class="user-input" placeholder="Username">
-        </div>
-
-        <div class="password-field">
-                <input type="password" class="password-input" placeholder="Password">
+        <form action="http://127.0.0.1:3000/cadastroUsuario" method="post"></form>
+            <div class="login-content">
+                <div class="user-field">
+                    <input type="email" class="user-input" placeholder="Username" id="user">
             </div>
-        </div>
 
-        <div class="password-field">
-            <input type="password" class="password-input" placeholder="Confirm password">
-        </div>
-        </div>
+            <div class="password-field">
+                    <input type="password" class="password-input" placeholder="Password" id="password">
+                </div>
+            </div>
 
-        <div class="btn-div">
-            <button class="login-btn">Cadastrar</button>
-        </div>
+            <div class="password-field">
+                <input type="password" class="password-input" placeholder="Confirm password" id="confirmPassword">
+            </div>
+            </div>
+
+            <div class="btn-div">
+                <button class="login-btn">Cadastrar</button>
+            </div>
+        </form>
 
         <div class="btn-div">
             <label for="" class="signup">Já possui conta?</label><a href="/src/public/login.html" class="signup-label">Entrar</a>
