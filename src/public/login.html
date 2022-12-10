@@ -19,7 +19,6 @@
             <h1> The Flirt </h1>
         </div> 
         
-        <!-- <form action="http://127.0.0.1:3000/login" method="post"> -->
             <div class="login-content">
                 <div class="user-field">
                     <input type="email" class="user-input" placeholder="Username" id="user" required>
@@ -32,13 +31,14 @@
             </div>
 
             <div class="btn-div">
-                <button class="login-btn" onclick="validLogin()" type="submit">Login</button>
+                <button class="login-btn" onclick="validLogin()">Login</button>
             </div>
-        <!-- </form> -->
 
         <div class="btn-div">
             <label for="" class="signup">Ainda não possui conta?</label><a href="signup.html" class="signup-label">Cadastre aqui</a>
         </div>
+
+        <p id="errorMsg"></p>
         
         <div class="blob-one">
             <img src="./images/blob.png" alt="">
@@ -48,7 +48,7 @@
             <img src="./images/blob2.png" alt="">
         </div>
 
-        <script src="./login.js"></script>
+        <script src="./scripts/login.js"></script>
         
     </body>
 </html>

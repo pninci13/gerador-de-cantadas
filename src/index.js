@@ -32,10 +32,7 @@ app.listen(porta, function () {
 });
 
 
-app.post("/cadastroUsuario", function (req, res) {
-    dbController.addUser(req);
-    res.sendFile(__dirname + "/public/index.html");
-});
+
 
 //========================================================
 app.post("/cadastroCantada", function (req, res) {
@@ -53,6 +50,32 @@ app.get("/listarCantadas", function (req, res) {
 
 });
 
+
+
+
+app.get("/listarUsuarios", function (req, res) {
+    console.log("Listando usuarios: ");
+    var query = {};
+    dbController.findUser(query);
+
+    res.sendFile(__dirname + "/public/index.html");
+
+});
+
+app.get("/cantadaAleatoria", async(req,res)=>{
+    console.log("Tentando achar cantada aleatoria");
+
+    let cantada = await dbController.findRandomCantada();
+
+   res.send(cantada);
+    
+   res.end();
+
+
+   
+
+});
+
 app.post('/login', async (req,res) => {
     
     _usuario = req.body.usuario;
@@ -67,14 +90,9 @@ app.post('/login', async (req,res) => {
     }
 
     res.end();
-})
+});
 
-
-app.get("/listarUsuarios", function (req, res) {
-    console.log("Listando usuarios: ");
-    var query = {};
-    dbController.findUser(query);
-
+app.post("/cadastroUsuario", async (req, res) => {
+    dbController.addUser(req);
     res.sendFile(__dirname + "/public/index.html");
-
 });

@@ -1,5 +1,5 @@
-const User = require("../scripts/User");
-const Cantada = require("../scripts/Cantada");
+const User = require("../public/scripts/User");
+const Cantada = require("../public/scripts/Cantada");
 let MongoClient = require('mongodb').MongoClient;
 let url = "mongodb://0.0.0.0:27017/";
 let MONGO_CONFIG = {
@@ -44,34 +44,21 @@ function addUser(req) {
 
 let db;
 const loadDB = async () => {
-    if (db) {
-        return db;
-    }
-    try {
-        const client = await MongoClient.connect(url);
-        db = client.db('mydb');
-    } catch (err) {
-        Raven.captureException(err);
-    }
+  if (db) {
     return db;
+  }
+  try {
+    const client = await MongoClient.connect(url);
+    db = client.db('mydb');
+  } catch (err) {
+    Raven.captureException(err);
+  }
+  return db;
 };
 
 
 
-async function findUser(user, passwd) {
-  let customer;
 
-  const db = await loadDB();
-  var collection = db.collection("customers");
-
-  customer = await collection.findOne({ _usuario: user });
-
-  if(!(String(customer._senha) === String(passwd))) {
-    customer = -1;
-  }   
-
-  return customer;
-}
 
 //Controla cantadas
 function addCantada(req) {
@@ -114,40 +101,46 @@ function findCantada(query) {
         client.close();
       }
     );
-    
+
   });
 
-  findRandomCantada();
-   
+  //findRandomCantada();
+
 }
 
-function findRandomCantada() {
-  MongoClient.connect(url, async function (err, client) {
+async function findUser(user, passwd) {
+  let customer;
 
-    var db = client.db("mydb");
-    var collection = db.collection("cantadas");
-    
-    let d = new Date();
-    let time = d.getMilliseconds();
-    let count = await collection.countDocuments().then();
-    let index = Math.floor(Math.random() * time) % count;
-    console.log("COLL COUNT: " + count);
-    console.log("INDEX: " + index);
-    var query = { num: index};
+  const db = await loadDB();
+  var collection = db.collection("customers");
 
-    var cursor = await collection.find(query);
-    console.log("CURSOR: " + cursor);
+  customer = await collection.findOne({ _usuario: user });
 
-    cursor.forEach(
-      function (doc) {
-        console.log(doc);
-      },
-      function (err) {
-        client.close();
-      }
-    );
+  if (!(String(customer._senha) === String(passwd))) {
+    customer = -1;
+  }
 
-  });
+  return customer;
+}
+
+async function findRandomCantada() {
+
+
+  const db = await loadDB();
+  var collection = db.collection("cantadas");
+
+  let d = new Date();
+  let time = d.getMilliseconds();
+  let count = await collection.countDocuments().then();
+  let index = Math.floor(Math.random() * time) % count;
+  console.log("COLL COUNT: " + count);
+  console.log("INDEX: " + index);
+  var query = { num: index };
+
+  var cantada = await collection.findOne(query);
+  return cantada;
+
+
 }
 
 module.exports = {
@@ -155,5 +148,6 @@ module.exports = {
   addUser,
   addCantada,
   findCantada,
+  findRandomCantada,
   connectDB
 }
