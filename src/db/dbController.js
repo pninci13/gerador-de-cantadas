@@ -42,44 +42,24 @@ function addUser(req) {
 }
 
 
-function findUser(query) {
+async function findUser(user, passwd) {
+  let customer;
+
   MongoClient.connect(url, async function (err, client) {
 
-    var db = client.db("mydb");
-    var collection = db.collection("customers");
+      var db = client.db("mydb");
+      var collection = db.collection("customers");
 
-    var cursor = collection.find({query: { $exists: true, $ne: null } });
+      customer = await collection.findOne({ _usuario: user });
 
-    // db.<COLLECTION NAME>.find({ "<FIELD NAME>": { $exists: true, $ne: null } })
-
-    // var count = await collection.countDocuments(query._usuario).then();
-
-
-    console.log(cursor)
-    // if(count == 0){
-    //   console.log("meu pau alado")
-    // }else{
-    //   console.log("meu pau sem asa")
-    // }
-
-    // console.log(cursor)
-
-    cursor.forEach(
-      function (doc) {
-        console.log(doc);
-        if(doc == null){
-          // alert("Usuário não existe");
-          return -1;
-        }else{
-          console.log("Logooo");
-          return doc;
-        }
-      },
-      function (err) {
-        client.close();
+      if (String(customer._senha) === String(passwd)) {
+        console.log(customer._usuario + " LOGADO");
+      } else {
+        console.log("NAO LOGADO");
+        customer = -1;
       }
-    );
-  });
+      return customer;
+    });
 }
 
 //======================================================== 

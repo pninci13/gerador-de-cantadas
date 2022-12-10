@@ -51,14 +51,17 @@ app.get("/listarCantadas", function (req, res) {
 
 });
 
-app.post('/login', (req,res) => {
-    var query = {_usuario: req.body.user, _senha: req.body.password};
+app.post('/login', async (req,res) => {
 
-    if(dbController.findUser(query) != -1){
+    let user = await dbController.findUser(req.body.user, req.body.password);
+    console.log("User: " + user);
+    if(user != undefined){
+        console.log("VAI PRO INDEX");
         res.sendFile(__dirname + "/public/index.html");
     } else{
+        console.log("VAI PRO LOGIN");
         res.sendFile(__dirname + "/public/login.html");
-        window.alert("Credenciais Inválidas");
+        // window.alert("Credenciais Inválidas");
     }
 
    
