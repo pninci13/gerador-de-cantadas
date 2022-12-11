@@ -69,17 +69,10 @@ async function likeCantada(currUser,cantada_Num) {
 
   const db = await loadDB();
   let collection = db.collection("cantadas");
+  let collectionCustomers = db.collection("customers");
   let cantada = await collection.findOne({num: cantada_Num});
 
-  console.log("cantadas favoritadas: " + JSON.stringify(cantada));
-  console.log("cantadas favoritadas: " + JSON.stringify(currUser._cantadasFavoritadas));
-
-
-  collection.updateOne({_id: currUser._id}, {$push: {_cantadasFavoritadas: "cantada"}});
-
-  console.log("cantadas favoritadas: " + JSON.stringify(currUser._cantadasFavoritadas));
-
-
+  collectionCustomers.updateOne({_id: currUser._id}, {$push: {_cantadasFavoritadas: cantada}});
 
   collection.updateOne({ num: cantada_Num }, { $inc: { favoritados: 1 } });
 
