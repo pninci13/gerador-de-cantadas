@@ -20,7 +20,7 @@
         </div> 
         
 
-        <form action="http://127.0.0.1:3000/cadastroUsuario" method="post">
+       
             <div class="login-content">
                 <div class="user-field">
                     <input type="email" class="user-input" placeholder="Username" id="user" name="user" required>
@@ -37,9 +37,10 @@
             </div>
 
             <div class="btn-div">
-                <button class="login-btn" type="submit">Cadastrar</button>
+                <button class="login-btn" onclick="validNewUser()">Cadastrar</button>
             </div>
-        </form>
+
+            <p id="errorMsg"></p>
 
         <div class="btn-div">
             <label for="" class="signup">Já possui conta?</label><a href="login.html" class="signup-label">Entrar</a>
@@ -52,5 +53,7 @@
         <div class="blob-five">
             <img src="./images/blob5.png" alt="">
         </div>
+
+        <script src="./scripts/signUpUser.js"></script>
     </body>
 </html>

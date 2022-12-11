@@ -68,13 +68,14 @@ app.get("/cantadaAleatoria", async(req,res)=>{
 app.post('/login', async (req,res) => {
     
     _usuario = req.body.usuario;
-    currUser = {_usuario: req.body.usuario, _senha: req.body.senha};
+    //currUser = {_usuario: req.body.usuario, _senha: req.body.senha};
     _senha = req.body.senha;
 
     let user = await dbController.findUser(_usuario, _senha);
 
     if(user != -1){
         res.send({username: user._usuario});
+        currUser = user;
     } else{
         res.send({username: -1});
     }
@@ -83,15 +84,28 @@ app.post('/login', async (req,res) => {
 });
 
 app.post("/cadastroUsuario", async (req, res) => {
-    dbController.addUser(req);
-    res.sendFile(__dirname + "/public/index.html");
+
+    _usuario = req.body.usuario;
+    _senha = req.body.senha;
+
+    let isUserExist = await dbController.addUser(_usuario,_senha);
+    if(isUserExist==1){
+        console.log("cadastro feito");
+
+    }
+    else{
+        console.log("cadastro nao feito");
+    }
+    res.status(201);
+    res.send();
+    res.end();
 });
 
 app.post("/attCantada", async(req,res)=>{
     let cantadaNum = req.body.num;
     console.log("do put: " + req.body.num);
 
-    let cantada = dbController.likeCantada(cantadaNum);
+    let cantada = dbController.likeCantada(currUser,cantadaNum);
 
     res.send(JSON.stringify(cantada));
 });

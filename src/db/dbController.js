@@ -1,6 +1,7 @@
 const User = require("../public/scripts/User");
 const Cantada = require("../public/scripts/Cantada");
 let MongoClient = require('mongodb').MongoClient;
+let getUser = require("../public/scripts/getUser");
 let url = "mongodb://0.0.0.0:27017/";
 let MONGO_CONFIG = {
   useUnifiedTopology: true,
@@ -8,24 +9,27 @@ let MONGO_CONFIG = {
 }
 
 //Controla usuarios
-function addUser(req) {
-  MongoClient.connect(url, function (err, db) {
-    if (err)
-      throw err;
+async function addUser(user, passwd) {
 
-    var dbo = db.db("mydb");
-    if (req.body.password == req.body.confirmPassword) {
-      var myobj = new User(req.body.user, req.body.password);
-      dbo.collection("customers").insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        console.log(myobj._usuario + " foi cadastrado");
-        db.close();
-      });
-    } else {
-      alert("Senhas diferentes!");
-      db.close();
-    }
-  });
+  const db = await loadDB();
+  var collection = db.collection("customers");
+
+  let user1 = await collection.findOne({ _usuario: user });
+
+  console.log(user1);
+
+  if (user1 == null) {
+
+    var myobj = new User(user, passwd);
+    db.collection("customers").insertOne(myobj, function (err, res) {
+      if (err) throw err;
+      console.log(myobj._usuario + " foi cadastrado");
+    });
+    return 1;
+  }else{
+    console.log("usuario ja existe, cadastro abortado");
+    return -1;
+  }
 }
 
 
@@ -61,17 +65,29 @@ async function findCantada(query) {
   return cantada;
 }
 
-async function likeCantada(cantada_Num) {
+async function likeCantada(currUser,cantada_Num) {
 
   const db = await loadDB();
   let collection = db.collection("cantadas");
-  let cantada;
+  let cantada = await collection.findOne({num: cantada_Num});
+
+  console.log("cantadas favoritadas: " + JSON.stringify(cantada));
+  console.log("cantadas favoritadas: " + JSON.stringify(currUser._cantadasFavoritadas));
+
+
+  collection.updateOne({_id: currUser._id}, {$push: {_cantadasFavoritadas: "cantada"}});
+
+  console.log("cantadas favoritadas: " + JSON.stringify(currUser._cantadasFavoritadas));
+
+
 
   collection.updateOne({ num: cantada_Num }, { $inc: { favoritados: 1 } });
+
   cantada = await collection.findOne({num : cantada_Num});
   
   return cantada;
 }
+
 
 async function listCantadas(){
   let db = await loadDB();
