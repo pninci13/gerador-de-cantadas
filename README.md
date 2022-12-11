@@ -32,7 +32,11 @@
 
 
 ## How To Use
-
+This application is really simple to use, just follow the steps
+* Sign up you user
+* Login with you user
+* Start using the pickup line generator
+* You msy or may not save your favorites pickup lines
 
 ## Developers
 
@@ -50,4 +54,4 @@ This web application was devolped by:
 	- [Linkedin](https://www.linkedin.com/in/j%C3%BAlio-c%C3%A9sar-bello-moura-9972b71b9/)
 	
 ## Problems or Bugs
-
+In case you find any problem or bug in the application, please feel free to contact any of the developers.
