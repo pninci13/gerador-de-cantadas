@@ -7,19 +7,6 @@ let MONGO_CONFIG = {
   useNewUrlParser: true
 }
 
-//======================================================== 
-//Conecta ao banco
-function connectDB() {
-  MongoClient.connect(url, MONGO_CONFIG,
-    function (err, db) {
-      if (err) throw err;
-      console.log("Base de dados criada");
-      db.close();
-    }
-  )
-}
-
-//======================================================== 
 //Controla usuarios
 function addUser(req) {
   MongoClient.connect(url, function (err, db) {
@@ -56,42 +43,40 @@ const loadDB = async () => {
   return db;
 };
 
-
-
-
-
-//Controla cantadas
-function addCantada(req) {
-  MongoClient.connect(url, function (err, db) {
-    if (err)
-      throw err;
-
-    var dbo = db.db("mydb");
-    //var myobj = new Cantada(req.body.cantadaInput);
-
-    // dbo.collection("cantadas").insertOne(myobj, function (err, res) {
-    //   if (err) throw err;
-    //   console.log("Uma cantada foi cadastrada.");
-    //   db.close();
-    // });
-
-
-    dbo.collection("cantadas").insertMany(Cantada._listaCantadas, function (err, res) {
-      if (err) throw err;
-      console.log("Uma cantada foi cadastrada.");
-      db.close();
-    });
+//Adiciona cantadas
+async function addCantada(req) {
+  
+  let db = await loadDB();
+  db.collection("cantadas").insertMany(Cantada._listaCantadas, function (err, res) {
+    if (err) throw err;
+    db.close();
   });
 }
 
-function findCantada(query) {
+async function findCantada(query) {
 
-  MongoClient.connect(url, function (err, client) {
+  let db = await loadDB();
+  let collection = db.collection("cantadas");
+  var cantada = collection.findOne(query);
+  return cantada;
+}
 
-    var db = client.db("mydb");
-    var collection = db.collection("cantadas");
+async function likeCantada(cantada_Num) {
 
-    var cursor = collection.find(query).sort({ favoritados: 1 });
+  const db = await loadDB();
+  let collection = db.collection("cantadas");
+  let cantada;
+
+  collection.updateOne({ num: cantada_Num }, { $inc: { favoritados: 1 } });
+  cantada = await collection.findOne({num : cantada_Num});
+  
+  return cantada;
+}
+
+async function listCantadas(){
+  let db = await loadDB();
+  let collection = db.collection("cantadas");
+  var cursor = collection.find(query).sort({ favoritados: 1 });
 
     cursor.forEach(
       function (doc) {
@@ -101,11 +86,6 @@ function findCantada(query) {
         client.close();
       }
     );
-
-  });
-
-  //findRandomCantada();
-
 }
 
 async function findUser(user, passwd) {
@@ -124,8 +104,6 @@ async function findUser(user, passwd) {
 }
 
 async function findRandomCantada() {
-
-
   const db = await loadDB();
   var collection = db.collection("cantadas");
 
@@ -133,14 +111,11 @@ async function findRandomCantada() {
   let time = d.getMilliseconds();
   let count = await collection.countDocuments().then();
   let index = Math.floor(Math.random() * time) % count;
-  console.log("COLL COUNT: " + count);
-  console.log("INDEX: " + index);
+
   var query = { num: index };
 
   var cantada = await collection.findOne(query);
   return cantada;
-
-
 }
 
 module.exports = {
@@ -149,5 +124,7 @@ module.exports = {
   addCantada,
   findCantada,
   findRandomCantada,
-  connectDB
+  likeCantada,
+  listCantadas,
+  // connectDB
 }

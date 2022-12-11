@@ -1,7 +1,7 @@
 class Cantada{
     _num
     _cantada
-    _numFavoritados
+    _avoritados
 
     static _listaCantadas = [
         {
@@ -189,8 +189,7 @@ class Cantada{
     constructor(num, cantada){//cadastrar uma cantada nova
         this.num = num;
         this._cantada=cantada;
-        this._numFavoritados=0;
-        Cantada._listaCantadas.push(this);
+        this._favoritados=0;
     }
 }
 

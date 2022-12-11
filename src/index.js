@@ -20,13 +20,13 @@ app.use(bodyParser.json());
 //Importando modulos e criando banco de dados
 
 const dbController = require(__dirname + "/db/dbController.js");
-
+let currUser = {_usuario: "meu pau", _senha: "meusovo", cantadas: []};
 //Configurando server
 
-app.get('/', function (req, res) { });
+app.get('/', function (req, res) {});
 
 app.listen(porta, function () {
-    dbController.connectDB();
+    // dbController.connectDB();
 
     console.log(`Servidor rodando em: http://${host}:${porta}`);
 });
@@ -40,7 +40,6 @@ app.post("/cadastroCantada", function (req, res) {
     res.sendFile(__dirname + "/public/index.html");
 });
 
-
 app.get("/listarCantadas", function (req, res) {
     console.log("Listando cantadas: ");
     var query = {};
@@ -49,8 +48,6 @@ app.get("/listarCantadas", function (req, res) {
     res.sendFile(__dirname + "/public/index.html");
 
 });
-
-
 
 
 app.get("/listarUsuarios", function (req, res) {
@@ -63,22 +60,15 @@ app.get("/listarUsuarios", function (req, res) {
 });
 
 app.get("/cantadaAleatoria", async(req,res)=>{
-    console.log("Tentando achar cantada aleatoria");
-
     let cantada = await dbController.findRandomCantada();
-
-   res.send(cantada);
-    
-   res.end();
-
-
-   
-
+    res.send(cantada);
+    res.end();
 });
 
 app.post('/login', async (req,res) => {
     
     _usuario = req.body.usuario;
+    currUser = {_usuario: req.body.usuario, _senha: req.body.senha};
     _senha = req.body.senha;
 
     let user = await dbController.findUser(_usuario, _senha);
@@ -95,4 +85,17 @@ app.post('/login', async (req,res) => {
 app.post("/cadastroUsuario", async (req, res) => {
     dbController.addUser(req);
     res.sendFile(__dirname + "/public/index.html");
+});
+
+app.post("/attCantada", async(req,res)=>{
+    let cantadaNum = req.body.num;
+    console.log("do put: " + req.body.num);
+
+    let cantada = dbController.likeCantada(cantadaNum);
+
+    res.send(JSON.stringify(cantada));
+});
+
+app.get('/user', function (req, res) {
+    res.send(JSON.stringify(currUser));
 });
