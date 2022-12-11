@@ -13,6 +13,7 @@
   <a href="#app-features">App Features</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#developers">Developers</a> •
+  <a href="#problems-or-bugs">Problems or Bugs</a> •
 </p>
 
 ![Screenshot_1](https://user-images.githubusercontent.com/69252953/206580913-ae68c458-16d7-4b87-a035-4e072f5c6f7e.png)
@@ -31,7 +32,11 @@
 
 
 ## How To Use
-
+This application is really simple to use, just follow the steps
+* Sign up you user
+* Login with you user
+* Start using the pickup line generator
+* You msy or may not save your favorites pickup lines
 
 ## Developers
 
@@ -39,7 +44,6 @@ This web application was devolped by:
 
 - Pedro Ninci
 	- [Linkedin](https://www.linkedin.com/in/pedroninci/)
-	
 - Victor Takeshi
 	- [Linkedin](https://www.linkedin.com/in/victor-fukumoto-37a145209/)
 - Emerson Zani
@@ -49,8 +53,5 @@ This web application was devolped by:
 - Julio Moura
 	- [Linkedin](https://www.linkedin.com/in/j%C3%BAlio-c%C3%A9sar-bello-moura-9972b71b9/)
 	
-## Support
-
-
 ## Problems or Bugs
-
+In case you find any problem or bug in the application, please feel free to contact any of the developers.
