@@ -13,6 +13,7 @@
   <a href="#app-features">App Features</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#developers">Developers</a> •
+  <a href="#problems-or-bugs">Developers</a> •
 </p>
 
 ![Screenshot_1](https://user-images.githubusercontent.com/69252953/206580913-ae68c458-16d7-4b87-a035-4e072f5c6f7e.png)
