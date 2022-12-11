@@ -39,7 +39,6 @@ This web application was devolped by:
 
 - Pedro Ninci
 	- [Linkedin](https://www.linkedin.com/in/pedroninci/)
-	
 - Victor Takeshi
 	- [Linkedin](https://www.linkedin.com/in/victor-fukumoto-37a145209/)
 - Emerson Zani
@@ -49,8 +48,5 @@ This web application was devolped by:
 - Julio Moura
 	- [Linkedin](https://www.linkedin.com/in/j%C3%BAlio-c%C3%A9sar-bello-moura-9972b71b9/)
 	
-## Support
-
-
 ## Problems or Bugs
 
