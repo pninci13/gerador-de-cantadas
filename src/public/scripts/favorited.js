@@ -7,8 +7,7 @@ async function loadModals() {
     let text = "";
     for (var i = 0; i < currUser._cantadasFavoritadas.length; i++) {
       text +=
-        `<div class="item saved-pickup" data-bs-toggle="modal" data-bs-target="#pickup-modal_${i}">${currUser._cantadasFavoritadas[i].cantada}</div>
-        <button type="button" class="rm-btn">Remove</button>`
+        `<div class="item saved-pickup" data-bs-toggle="modal" data-bs-target="#pickup-modal_${i}">${currUser._cantadasFavoritadas[i].cantada}</div>`
       addModalClick(currUser._cantadasFavoritadas[i], i);
     }
   
