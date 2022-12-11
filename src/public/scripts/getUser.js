@@ -8,12 +8,5 @@ async function getUser() {
   
     document.getElementById('userEmail').innerText = result._usuario;
   
-    console.log(JSON.stringify(result));
-  
     return result;
-  
-  }
-
-  module.exports={
-    getUser
   }

@@ -49,7 +49,7 @@ const loadDB = async () => {
 
 //Adiciona cantadas
 async function addCantada(req) {
-  
+
   let db = await loadDB();
   db.collection("cantadas").insertMany(Cantada._listaCantadas, function (err, res) {
     if (err) throw err;
@@ -81,20 +81,20 @@ async function likeCantada(currUser,cantada_Num) {
   return cantada;
 }
 
-
 async function listCantadas(){
-  let db = await loadDB();
+  const  db = await loadDB();
   let collection = db.collection("cantadas");
-  var cursor = collection.find(query).sort({ favoritados: 1 });
+  var cantadas = await collection.find({}).sort({ favoritados: 1 }).limit(6);
 
-    cursor.forEach(
-      function (doc) {
-        console.log(doc);
-      },
-      function (err) {
-        client.close();
-      }
-    );
+  var cantadasArray = [];
+
+   await cantadas.forEach(
+    function (doc) {
+      cantadasArray.push(doc);
+    }
+  );
+
+  return cantadasArray;
 }
 
 async function findUser(user, passwd) {
@@ -134,6 +134,5 @@ module.exports = {
   findCantada,
   findRandomCantada,
   likeCantada,
-  listCantadas,
-  // connectDB
+  listCantadas
 }

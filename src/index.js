@@ -20,19 +20,19 @@ app.use(bodyParser.json());
 //Importando modulos e criando banco de dados
 
 const dbController = require(__dirname + "/db/dbController.js");
-let currUser = {_usuario: "meu pau", _senha: "meusovo", cantadas: []};
+let currUser;
+let cantadasSorted = [];
 //Configurando server
 
-app.get('/', function (req, res) {});
-
-app.listen(porta, function () {
-    // dbController.connectDB();
-
-    console.log(`Servidor rodando em: http://${host}:${porta}`);
+app.get('/', function (req, res) {
+    if(currUser == undefined){
+        sendFile(__dirname + "/public/login.html")
+    }
 });
 
-
-
+app.listen(porta, function () {
+    console.log(`Servidor rodando em: http://${host}:${porta}/login.html`);
+});
 
 //========================================================
 app.post("/cadastroCantada", function (req, res) {
@@ -68,7 +68,6 @@ app.get("/cantadaAleatoria", async(req,res)=>{
 app.post('/login', async (req,res) => {
     
     _usuario = req.body.usuario;
-    //currUser = {_usuario: req.body.usuario, _senha: req.body.senha};
     _senha = req.body.senha;
 
     let user = await dbController.findUser(_usuario, _senha);
@@ -103,13 +102,20 @@ app.post("/cadastroUsuario", async (req, res) => {
 
 app.post("/attCantada", async(req,res)=>{
     let cantadaNum = req.body.num;
-    console.log("do put: " + req.body.num);
-
     let cantada = dbController.likeCantada(currUser,cantadaNum);
 
     res.send(JSON.stringify(cantada));
 });
 
-app.get('/user', function (req, res) {
+app.get('/user', async function (req, res) {
+
+    currUser = await dbController.findUser(currUser._usuario, currUser._senha);
     res.send(JSON.stringify(currUser));
+});
+
+app.get("/sortCantadas", async (req, res) => {
+    cantadasSorted = await dbController.listCantadas();
+
+    res.send(cantadasSorted);
+    res.end();
 });
