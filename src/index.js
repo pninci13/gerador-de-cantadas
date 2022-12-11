@@ -14,6 +14,7 @@ app.use("/", express.static(__dirname + "/public"));
 const bodyParser = require("body-parser");
 const { json } = require('body-parser');
 const User = require('./public/scripts/User');
+const Cantada = require('./public/scripts/Cantada');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -104,8 +105,10 @@ app.post("/cadastroUsuario", async (req, res) => {
     res.end();
 });
 
-app.get("/attCantada",async(req,res)=>{
-    var cantada = "Quando abre vaga para eu me candidatar a ser o grande amor da sua vida?";
+app.put("/attCantada", async(req,res)=>{
+    var cantada = req.body.cantada;
 
-    User.adicionarFavoritadas(cantada);
+    console.log("do put: " + cantada);
+
+    dbController.findCantada(cantada);
 });

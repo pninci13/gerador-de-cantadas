@@ -194,16 +194,6 @@ class Cantada{
         this._numFavoritados=parseInt(0);
         Cantada._listaCantadas.push(this);
     }
-
-    static async incrementarFavoritados(cantada){
-        console.log("tentei");
-        for(var i = 0;i<Cantada._listaCantadas.length;i++){
-            if(cantada==Cantada._listaCantadas.cantada){
-                console.log("deu bom");
-            }
-        }
-        await dbController.findCantada(cantada);
-    }
 }
 
 module.exports = Cantada;

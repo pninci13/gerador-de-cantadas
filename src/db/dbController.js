@@ -42,49 +42,32 @@ const loadDB = async () => {
 
 
 
-//Controla cantadas
-function addCantada(req) {
-  MongoClient.connect(url, function (err, db) {
-    if (err)
-      throw err;
+async function addCantada(req) {
 
-    var dbo = db.db("mydb");
-    //var myobj = new Cantada(req.body.cantadaInput);
-
-    // dbo.collection("cantadas").insertOne(myobj, function (err, res) {
-    //   if (err) throw err;
-    //   console.log("Uma cantada foi cadastrada.");
-    //   db.close();
-    // });
-
-
-    dbo.collection("cantadas").insertMany(Cantada._listaCantadas, function (err, res) {
-      if (err) throw err;
-      console.log("Uma cantada foi cadastrada.");
-      db.close();
-    });
+  let db = await loadDB();
+  db.collection("cantadas").insertMany(Cantada._listaCantadas, function (err, res) {
+    if (err) throw err;
+    db.close();
   });
 }
 
 async function findCantada(cantada) {
 
-  
+  const db = await loadDB();
 
-    const db = await loadDB();
+  var collection = db.collection("cantadas");
 
-    var collection = db.collection("cantadas");
+ 
 
-    console.log("chegou aqui 1");
-
-    var cursor = collection.updateOne({cantada},{$inc:{favoritados: 1}});
-    console.log("chegou aqui 2");
+  var cursor = collection.updateOne({ cantada }, { $inc: { favoritados: 1 } });
+  console.log("chegou aqui 2");
 
 
-    
+
 
 }
 
-async function addUser(user,passwd) {
+async function addUser(user, passwd) {
 
 
   const db = await loadDB();

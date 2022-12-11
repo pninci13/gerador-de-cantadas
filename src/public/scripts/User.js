@@ -8,11 +8,7 @@ class User{
     constructor(usuario, senha){
         this._usuario=usuario
         this._senha=senha
-    }
-
-    static adicionarFavoritadas = function(cantada){
-       
-        Cantada.incrementarFavoritados(cantada);
+        this._cantadasFavoritadas = [];
     }
 }
 module.exports = User;
