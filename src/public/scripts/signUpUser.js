@@ -15,7 +15,7 @@ async function validNewUser(){
         if(user.length > 0 && passwd.length > 0 && confirmedPassword.length > 0){
             document.getElementById('errorMsg').innerText = "";
             if(confirmPost != -1){
-                location = 'http://127.0.0.1:3000/login.html';
+                location = 'https://master.d1y1pgoxyydtk6.amplifyapp.com';
             } else{
                 alert("Credenciais Inválidas");
             }
