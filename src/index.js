@@ -1,11 +1,9 @@
-//========================================================
-//Configuracoes do server
 const host = "127.0.0.1";
 const porta = "3000";
 
 //======================================================== 
 //Configurando pagina com express
-const express = require('express'); 
+const express = require('express');
 const app = express();
 app.use("/", express.static(__dirname + "/public"));
 
@@ -13,8 +11,6 @@ app.use("/", express.static(__dirname + "/public"));
 //Configurando body-parser
 const bodyParser = require("body-parser");
 const { json } = require('body-parser');
-const User = require('./public/scripts/User');
-const Cantada = require('./public/scripts/Cantada');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -22,26 +18,25 @@ app.use(bodyParser.json());
 //Importando modulos e criando banco de dados
 
 const dbController = require(__dirname + "/db/dbController.js");
-
+let currUser;
+let cantadasSorted = [];
 //Configurando server
 
-app.get('/', function (req, res) { });
+app.get('/', function (req, res) {
+    if(currUser == undefined){
+        sendFile("https://master.d1y1pgoxyydtk6.amplifyapp.com/" + "login.html")
+    }
+});
 
 app.listen(porta, function () {
-    dbController.connectDB();
-
-    console.log(`Servidor rodando em: http://${host}:${porta}`);
+    console.log(`Servidor rodando em: http://${host}:${porta}/login.html`);
 });
-
-
-
 
 //========================================================
-app.get("/cadastroCantada", async function (req, res) {
-    await dbController.addCantada(req);
-    res.sendFile("https://master.d1y1pgoxyydtk6.amplifyapp.com/" + "index.html"); //
+app.post("/cadastroCantada", function (req, res) {
+    dbController.addCantada(req);
+    res.sendFile("https://master.d1y1pgoxyydtk6.amplifyapp.com/" + "index.html");
 });
-
 
 app.get("/listarCantadas", function (req, res) {
     console.log("Listando cantadas: ");
@@ -51,8 +46,6 @@ app.get("/listarCantadas", function (req, res) {
     res.sendFile("https://master.d1y1pgoxyydtk6.amplifyapp.com/" + "index.html");
 
 });
-
-
 
 
 app.get("/listarUsuarios", function (req, res) {
@@ -65,17 +58,9 @@ app.get("/listarUsuarios", function (req, res) {
 });
 
 app.get("/cantadaAleatoria", async(req,res)=>{
-    console.log("Tentando achar cantada aleatoria");
-
     let cantada = await dbController.findRandomCantada();
-
-   res.send(cantada);
-    
-   res.end();
-
-
-   
-
+    res.send(cantada);
+    res.end();
 });
 
 app.post('/login', async (req,res) => {
@@ -87,6 +72,7 @@ app.post('/login', async (req,res) => {
 
     if(user != -1){
         res.send({username: user._usuario});
+        currUser = user;
     } else{
         res.send({username: -1});
     }
@@ -99,16 +85,35 @@ app.post("/cadastroUsuario", async (req, res) => {
     _usuario = req.body.usuario;
     _senha = req.body.senha;
 
-    await dbController.addUser(_usuario,_senha);
+    let isUserExist = await dbController.addUser(_usuario,_senha);
+    if(isUserExist==1){
+        console.log("cadastro feito");
+
+    }
+    else{
+        console.log("cadastro nao feito");
+    }
     res.status(201);
     res.send();
     res.end();
 });
 
-app.put("/attCantada", async(req,res)=>{
-    var cantada = req.body.cantada;
+app.post("/attCantada", async(req,res)=>{
+    let cantadaNum = req.body.num;
+    let cantada = dbController.likeCantada(currUser,cantadaNum);
 
-    console.log("do put: " + cantada);
+    res.send(JSON.stringify(cantada));
+});
 
-    dbController.findCantada(cantada);
+app.get('/user', async function (req, res) {
+
+    currUser = await dbController.findUser(currUser._usuario, currUser._senha);
+    res.send(JSON.stringify(currUser));
+});
+
+app.get("/sortCantadas", async (req, res) => {
+    cantadasSorted = await dbController.listCantadas();
+
+    res.send(cantadasSorted);
+    res.end();
 });
